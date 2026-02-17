@@ -105,14 +105,12 @@ echo "==> [1/3] Extracting features..."
 colmap feature_extractor \
     --database_path "$DB_PATH" \
     --image_path "$WORKSPACE/images" \
-    --ImageReader.single_camera 1 \
-    --SiftExtraction.use_gpu 1
+    --ImageReader.single_camera 1
 
 # 1b. Feature matching
 echo "==> [2/3] Matching features (exhaustive)..."
 colmap exhaustive_matcher \
-    --database_path "$DB_PATH" \
-    --SiftMatching.use_gpu 1
+    --database_path "$DB_PATH"
 
 # 1c. Sparse reconstruction (mapper)
 echo "==> [3/3] Running sparse reconstruction..."
@@ -142,6 +140,7 @@ echo "=========================================="
 
 echo "==> Training 3D Gaussians..."
 opensplat "$WORKSPACE" \
+    --cpu \
     -o "$OUTPUT" \
     "${OPENSPLAT_EXTRA_ARGS[@]+"${OPENSPLAT_EXTRA_ARGS[@]}"}"
 
