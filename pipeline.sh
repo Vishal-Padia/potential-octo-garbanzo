@@ -140,7 +140,6 @@ echo "=========================================="
 
 echo "==> Training 3D Gaussians..."
 opensplat "$WORKSPACE" \
-    --cpu \
     -o "$OUTPUT" \
     "${OPENSPLAT_EXTRA_ARGS[@]+"${OPENSPLAT_EXTRA_ARGS[@]}"}"
 
